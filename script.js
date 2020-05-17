@@ -27,8 +27,7 @@ function makeCards(data){
         let cardExcerpt = document.createElement("div");
         let cardTitle = document.createElement("H3");
         let cardImg = document.createElement("img");
-
-
+        let cardRecorded = document.createElement("div");
 
         voorstellingCard.className = "card";
         cardImgWrapper.className = "cardImgWrapper";
@@ -37,21 +36,25 @@ function makeCards(data){
         cardImgOverlay.className = "cardImgOverlay";
         cardGenre.className = "cardGenre";
         cardExcerpt.className = "cardExcerpt";
+        cardRecorded.className = "cardExcerpt";
 
         cardTitle.innerHTML = voorstelling.name;
         cardImg.src = voorstelling.thumbnail.url;
         cardGenre.innerHTML = voorstelling['genre-v2'];
         cardExcerpt.innerHTML = voorstelling.excerpt;
+        cardRecorded.innerHTML = voorstelling['recorded-at'];
 
         cardImgOverlay.appendChild(cardGenre);
         cardContent.appendChild(cardTitle);
         cardImgWrapper.appendChild(cardImg);
         cardImgWrapper.appendChild(cardImgOverlay);
         cardContent.appendChild(cardExcerpt);
-
+        if(voorstelling['recorded-at'] != undefined){
+            cardContent.appendChild(cardRecorded);
+        }
+    
         voorstellingCard.appendChild(cardImgWrapper);
         voorstellingCard.appendChild(cardContent);
-
 
 		document.getElementById("results").appendChild(voorstellingCard);
     }

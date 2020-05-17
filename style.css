@@ -222,6 +222,11 @@ h6{
         align-items: flex-start;
 }
 
+.cardContent h3{
+    margin-top:0px;
+    margin-bottom: 5px;
+}
+
 .cardImg{
     width: 100%;
     height: auto;
@@ -254,4 +259,11 @@ h6{
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+.cardExcerpt{
+    clear: none;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
 }
