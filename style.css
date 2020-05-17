@@ -1,5 +1,6 @@
 *{
     font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box
 }
 
 body{
@@ -166,4 +167,91 @@ h6{
     justify-content: center;
     align-items: center;
     background-color: transparent;
+}
+
+#results{
+    display: flex;
+    max-width: 1296px;
+    margin-top: 24px;
+    margin-right: auto;
+    margin-left: auto;
+    flex-wrap: wrap;
+    padding-right: 24px;
+    padding-left: 24px;
+    justify-content: space-between;
+    background-color: transparent;
+}
+
+.card{
+    width: 31%;
+    position: relative;
+    float: left;
+    min-height: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 400px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    background-color: #e8edf4;
+    text-decoration: none;
+    cursor: pointer;
+    
+}
+
+.cardImgWrapper{
+    display: block;
+    overflow: hidden;
+    height: 194px;
+    justify-content: flex-end;
+    align-items: stretch;
+    border-bottom: 6px solid #fc2d75;
+    border-radius: 10px 10px 0 0;
+    background-position: 50% 50%;
+    background-size: cover;
+    object-fit: cover;
+    position: relative;
+}
+
+.cardContent{
+        position: relative;
+        display: flex;
+        min-height: 180px;
+        padding: 36px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+}
+
+.cardImg{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    object-fit: cover;
+}
+
+.cardImgOverlay{
+    position: relative;
+    height: 100%;
+    padding: 36px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+    flex: 1;
+    display: flex;
+    background-color: rgba(19,11,44,.6);
+}
+
+.cardGenre{
+    display: inline-block;
+    margin-bottom: 24px;
+    padding: 3px 9px 3px 12px;
+    border-radius: 10px;
+    background-color: #fff;
+    color: #fc2d75;
+    font-size: 10px;
+    line-height: 22px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
