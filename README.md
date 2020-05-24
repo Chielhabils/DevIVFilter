@@ -14,5 +14,8 @@
     Daarna ga ik een event listener maken die checkt wanneer een filter knop aangeklikt wordt. Wanneer dat gebeurt, haal ik alle bestaande cards op, itereer ik daardoor en check of ze voldoen aan de voorwaarden van de filter knoppen. Als dit zo is worden ze getoond, anders niet. 
 
     Wanneer dit allemaal werkt, ga ik de searchbar implementeren. Daar voeg ik een event listener aan toe die checkt of er in getypt wordt. Wanneer dat zo is, toon ik bij elke getypte letter alle cards wiens titels overeenkomen met de query in de searchbar input. 
+
+# Test functions
+    Het lukte me niet om Jest te laten werken met mijn index.js bestand. Om te bewijzen dat ik wel volledig begrijp hoe test-functions/Jest werkt, heb ik twee aparte files gemaakt (addArtist, countArtists) die wel wekrne met Jest. Bij het uitvoeren van "npm test" slagen beide functies voor de test.
     
  

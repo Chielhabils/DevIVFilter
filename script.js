@@ -1,3 +1,7 @@
+window.onload = function (){
+
+//adding event listener on typing to searchbar
+document.querySelector('input').addEventListener('input', updateValue);
 
 //Fetching data
 fetch('entries.json')
@@ -6,6 +10,7 @@ fetch('entries.json')
     )
     .then(
         data => makeCards(data.items)
+        
         )
 
 //Making all the cards
@@ -18,6 +23,7 @@ function makeCards(data){
         
         //creating Category buttons
         if(!doelgroepen.includes(voorstelling.category)){
+            //checking if the category already exists, else adding it
             doelgroepen = [...doelgroepen, voorstelling.category];   
             let doelgroepBtn = document.createElement("button");
             doelgroepBtn.className = "categoryBtn";
@@ -27,6 +33,7 @@ function makeCards(data){
 
         //creating Genre Buttons
         if(!genres.includes(voorstelling['genre-v2'])){
+            //checking if the genre already exists, else adding it
             genres = [...genres, voorstelling['genre-v2']];   
             let genreBtn = document.createElement("button");
             genreBtn.className = "genreBtn";
@@ -121,8 +128,10 @@ function makeCards(data){
         document.getElementById("searchresults").appendChild(horizontalCard);
     }
 
+}
+
     //Event listener to check if filter buttons are clicked
-    document.addEventListener("click", function(e){
+document.addEventListener("click", function(e){
         let element = e.target
 
         //on and off switching of buttons and changing active state
@@ -147,11 +156,12 @@ function makeCards(data){
 
          var activeCategoryNames = [];
          var activeGenreNames = [];
-
+         
+         //adding the names of the active categories/genres to their respective arrays
           for(let name of activeCategories){
             activeCategoryNames = [...activeCategoryNames, name.innerHTML];   
           }
-          
+
           for(let name of activeGenres){
             activeGenreNames = [...activeGenreNames, name.innerHTML];   
           }
@@ -194,17 +204,12 @@ function makeCards(data){
                 thisCard.style.display = 'block';
              }
             }
-         })
-
-    //getting the searchbar and adding event listener on typing
-    const input = document.querySelector('input');  
-    input.addEventListener('input', updateValue);
-    
-    //function to show cards when typing in searchbar
-    function updateValue() {
-
+})
+  
+//function to show cards when typing in searchbar
+function updateValue(e) {
         //getting the input from searchbar
-        let currentInput = document.getElementById('searchInput').value;
+        let currentInput = e.target.value;
 
         //getting all searchbar cards
         var allHorizontalCards = document.getElementsByClassName("horizontalCard");
@@ -228,5 +233,8 @@ function makeCards(data){
                 thisCard.style.display = 'none';
             }
            }
-    }
+
 }
+
+}
+
