@@ -1,6 +1,3 @@
-let jsondata;
-let doelgroepen = [];
-let genres = [];
 
 //Fetching data
 fetch('entries.json')
@@ -8,22 +5,20 @@ fetch('entries.json')
         res => res.json()
     )
     .then(
-        data => jsondata = data,
-        )
-    .then(
-        //() => console.log(jsondata)
         data => makeCards(data.items)
         )
 
 //Making all the cards
 function makeCards(data){
 
+    let doelgroepen = [];
+    let genres = [];
     //loop to make every object in json file into a card
     for (let voorstelling of data){
-
+        
         //creating Category buttons
         if(!doelgroepen.includes(voorstelling.category)){
-            doelgroepen.push(voorstelling.category)
+            doelgroepen = [...doelgroepen, voorstelling.category];   
             let doelgroepBtn = document.createElement("button");
             doelgroepBtn.className = "categoryBtn";
             doelgroepBtn.innerHTML = voorstelling.category;
@@ -32,7 +27,7 @@ function makeCards(data){
 
         //creating Genre Buttons
         if(!genres.includes(voorstelling['genre-v2'])){
-            genres.push(voorstelling['genre-v2'])
+            genres = [...genres, voorstelling['genre-v2']];   
             let genreBtn = document.createElement("button");
             genreBtn.className = "genreBtn";
             genreBtn.innerHTML = voorstelling['genre-v2'];
@@ -133,9 +128,9 @@ function makeCards(data){
         //on and off switching of buttons and changing active state
         if (element.classList.contains('categoryBtn')){
          if(element.classList.contains('active')){
-            element.classList.remove("active");
+                element.classList.remove("active");
             }else if(!element.classList.contains('active')){
-            element.classList.add("active");
+                element.classList.add("active");
             }
         }
         if(element.classList.contains('genreBtn')){
@@ -147,18 +142,19 @@ function makeCards(data){
         }
 
         //checking which buttons have been activated
-         var activeFilters = document.getElementsByClassName("active");
-         var activeCategories = [];
-         var activeGenres = [];
-         for(let name of activeFilters){
-             if(name.classList.contains('categoryBtn')){
-                activeCategories.push(name.innerHTML);
-             }
-             if(name.classList.contains('genreBtn')){
-                activeGenres.push(name.innerHTML);
-             }
-             
-         }
+         var activeCategories = document.getElementsByClassName("active categoryBtn");
+         var activeGenres = document.getElementsByClassName("active genreBtn");
+
+         var activeCategoryNames = [];
+         var activeGenreNames = [];
+
+          for(let name of activeCategories){
+            activeCategoryNames = [...activeCategoryNames, name.innerHTML];   
+          }
+          
+          for(let name of activeGenres){
+            activeGenreNames = [...activeGenreNames, name.innerHTML];   
+          }
 
          //getting all standard cards to check their data
          var allCards = document.getElementsByClassName("card");
@@ -176,25 +172,25 @@ function makeCards(data){
              var categoryText = category.innerHTML;
              
              //Comparing genre/category of card to activated buttons and showing the ones that match
-             if(activeCategories.length > 0 && activeGenres.length == 0 ){
-                if(activeCategories.includes(categoryText)){
+             if(activeCategoryNames.length > 0 && activeGenreNames.length == 0 ){
+                if(activeCategoryNames.includes(categoryText)){
                     thisCard.style.display = 'block';
                 }else{
                     thisCard.style.display = 'none';
                 }
-             }else if(activeCategories.length > 0 && activeGenres.length > 0){
-                 if(activeCategories.includes(categoryText) && activeGenres.includes(genreText)){
+             }else if(activeCategoryNames.length > 0 && activeGenreNames.length > 0){
+                 if(activeCategoryNames.includes(categoryText) && activeGenreNames.includes(genreText)){
                     thisCard.style.display = 'block';
                  }else{
                     thisCard.style.display = 'none';
                  }
-             }else if(activeCategories.length == 0 && activeGenres.length > 0){
-                 if(activeGenres.includes(genreText)){
+             }else if(activeCategoryNames.length == 0 && activeGenreNames.length > 0){
+                 if(activeGenreNames.includes(genreText)){
                     thisCard.style.display = 'block';
                  }else{
                     thisCard.style.display = 'none';
                  }
-             }else if(activeCategories.length == 0 && activeGenres.length == 0){
+             }else if(activeCategoryNames.length == 0 && activeGenreNames.length == 0){
                 thisCard.style.display = 'block';
              }
             }
